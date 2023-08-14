@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const userRouter = require('./routes/users');
+const loginRouter = require("./routes/login")
 const app = express()
 
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({extended: true}));
 // 
 
 app.use("/user/", userRouter)
+app.use("/login/", loginRouter )
 
 const PORT = process.env.PORT || 8080
 

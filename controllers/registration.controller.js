@@ -1,13 +1,15 @@
 const joi = require("joi")
 const bcrypt = require("bcrypt")
 const User = require("../models/user")
+const Courses =require("../models/courses")
 
 const registration = async (req, res) => {
     const schema = joi.object({
         firstName: joi.string().min(3).required(),
         lastName: joi.string().min(3).required(),
         email: joi.string().min(3).required().email(),
-        password: joi.string().required().min(8)
+        password: joi.string().required().min(8),
+        courses: joi.required()
     })
 
     const { error } = schema.validate(req.body)
@@ -29,16 +31,16 @@ const registration = async (req, res) => {
             })
 
         }
-        const { firstName, lastName, email, password } = req.body
+        const { firstName, lastName, email, password, courses } = req.body
 
         user = new User({
-            firstName, lastName, email, password, dateCreated: new Date().toJSON()
+            firstName, lastName, email, password, courses, dateCreated: new Date().toJSON()
         })
         // hash passwrd using bcrypt
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
 
-        console.log(user);
+        
         await user.save()
 
         res.status(200).send({
@@ -50,6 +52,7 @@ const registration = async (req, res) => {
                 lastName: user.lastName,
                 email: user.email,
                 dateCreated: user.dateCreated,
+                courses: user.courses
             }
         })
     }
