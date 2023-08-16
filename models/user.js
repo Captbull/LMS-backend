@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const coursesSchema = new mongoose.Schema( {
+const coursesSchema = new mongoose.Schema({
     name: { type: String }
 })
 
@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
     email: { type: String, minlength: 3, required: 'email is required' },
     password: { type: String, minlength: 8, required: 'password is required' },
     dateCreated: { type: String, default: new Date().toJSON() },
-    courses: [coursesSchema]
+    courses: [coursesSchema],
+    role: { type: String, enum: ["INSTRUCTOR", "ADMIN"], default: "INSTRUCTOR" }
 })
 
 

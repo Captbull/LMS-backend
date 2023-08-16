@@ -52,7 +52,8 @@ const registration = async (req, res) => {
                 lastName: user.lastName,
                 email: user.email,
                 dateCreated: user.dateCreated,
-                courses: user.courses
+                courses: user.courses,
+                role: user.role
             }
         })
     }

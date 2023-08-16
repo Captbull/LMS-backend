@@ -47,6 +47,7 @@ const login = async (request, response) => {
             _id: user._id,
             email: user.email,
             username: user.username,
+            role: user.role,
             // isVerified: user.isVerified,
             dateCreated: user.dateCreated,
             // profileImage: user.profileImage,
