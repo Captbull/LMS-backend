@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 
-const createCourseSchema = new mongooes.Schema({
+const createCourseSchema = new mongoose.Schema({
     courseImage: {
         type: String
     },
@@ -16,7 +16,7 @@ const createCourseSchema = new mongooes.Schema({
         type: String,
     }, 
     duration: {
-        type: Number,
+        type: String,
     },
     dateCreated: {
         type: String,
@@ -33,6 +33,6 @@ const createCourseSchema = new mongooes.Schema({
 
 })
 
-const Course = mongooes.model("Course", createCourseSchema) 
+const Course = mongoose.model("Course", createCourseSchema) 
 
 module.exports = Course

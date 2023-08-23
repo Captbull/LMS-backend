@@ -11,15 +11,17 @@ const getUserProfile = async (req, res) => {
         res.status(200).send({
             responseCode: "00",
             responseMessage: "Successful",
-            data: {
-                _id: user._id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email,
-                courses: user.courses,
-                role: user.role,
-                dateCreated: user.dateCreated
-            }
+            data: 
+                [
+                    {_id: user._id},
+                    {firstName: user.firstName},
+                    {lastName: user.lastName},
+                    {email: user.email},
+                    {courses: user.courses},
+                    {role: user.role},
+                    {dateCreated: user.dateCreated}
+                ]
+            
         })
     } catch (error) {
         res.status(500).send({

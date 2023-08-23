@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const userRouter = require('./routes/users');
 const loginRouter = require("./routes/login")
 const app = express()
-const cors = require("cors")
+const cors = require("cors");
+const createCourseRouter = require('./routes/coursecreation');
 
 
 
@@ -23,6 +24,7 @@ app.use(cors());
 
 app.use("/user/", userRouter)
 app.use("/login/", loginRouter )
+app.use("/coursecreation", createCourseRouter)
 
 const PORT = process.env.PORT || 8080
 

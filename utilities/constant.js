@@ -1,6 +1,6 @@
 const RoleType = {
     ADMIN: "ADMIN",
-    USER: "USER"
+    INSTRUCTOR: "INSTRUCTOR"
 }
-​
+
 module.exports.RoleType = RoleType

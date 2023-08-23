@@ -1,19 +1,20 @@
 /*
 step 1 - validate client request body using joi library
 */
-const Course = require("../models/createcourses");
+const Course = require("../models/createcourse");
 const joi = require("joi");
 const { RoleType } = require("../utilities/constant");
-​
+const User = require("../models/user")
+
 const createCourse = async (req, res) => {
   const schema = joi.object({
     courseImage: joi.string().required(),
     title: joi.string().required(),
     description: joi.string().required(),
     learningObjectives: joi.string().required(),
-    duration: joi.number().required(),
+    duration: joi.string().required(),
   });
-​
+
   const { error } = schema.validate(req.body);
   if (error)
     return res.status(400).send({
@@ -21,8 +22,9 @@ const createCourse = async (req, res) => {
       responseMessage: error.details[0].message,
       data: null,
     });
-​
-  if (req.user.role !== RoleType.INSTRUCTOR) {
+
+let user = new User()
+  if (user.role !== RoleType.INSTRUCTOR) {
     return res.status(401).send({
       responseCode: "80",
       responseMessage: "Unauthorized",
@@ -31,17 +33,17 @@ const createCourse = async (req, res) => {
   }
   const { courseImage, title, description, learningObjectives, duration } =
     req.body;
-​
+
   try {
-    let course = await Course.findOne({ title });
-​
+    let course = await Course.findOne({ title, _id: req.user._id });
+
     if (course)
       return res.status(400).send({
         responseCode: "96",
         responseMessage: "Course already exist",
         data: null,
       });
-​
+
     course = new Course({
       courseImage,
       title,
@@ -53,11 +55,11 @@ const createCourse = async (req, res) => {
       dateUpdated: null,
       updatedBy: null,
     });
-​
+
     await course.save();
     res.status(200).send({
       responseCode: "00",
-      responseMessage: "course creation successful",
+      responseMessage: "course creation successful, awaiting admin approval",
       data: course,
     });
   } catch (error) {
@@ -69,5 +71,5 @@ const createCourse = async (req, res) => {
     console.log(error);
   }
 };
-​
+
 module.exports = createCourse;
