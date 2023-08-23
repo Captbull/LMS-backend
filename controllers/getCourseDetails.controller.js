@@ -13,14 +13,16 @@ const getCourseDetails = async (req, res) => {
         res.status(200).send({
             responseCode: "00",
             responseMessage: "Successful",
-            data: {
-                _id: course._id,
-                image: course.courseImage,
-                title: course.title,
-                description: course.description,
-                learningObjectives: course.learningObjectives,
-                duration: course.duration
-            }
+            data: 
+                [
+                    {_id: course._id},
+                    {image: course.courseImage},
+                    {title: course.title},
+                    {description: course.description},
+                    {learningObjectives: course.learningObjectives},
+                    {duration: course.duration}
+                ]
+            
         })
     } catch (error) {
         res.status(500).send({
