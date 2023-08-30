@@ -29,7 +29,8 @@ const createCourseSchema = new mongoose.Schema({
     },
     updatedBy: {
         type: String,
-    }
+    },
+    isApproved: { type: Boolean, default: false }
 
 })
 

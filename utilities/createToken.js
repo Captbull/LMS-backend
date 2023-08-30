@@ -4,7 +4,7 @@ const createToken = (user) => {
     return jwt.sign(
       { _id: user._id },
       process.env.SECRET_KEY,
-      { expiresIn: "1d" }
+      { expiresIn: "60d" }
     );
   };
 
