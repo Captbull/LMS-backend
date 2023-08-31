@@ -13,13 +13,15 @@ const getUserProfile = async (req, res) => {
             responseMessage: "Successful",
             data: 
                 [
-                    {_id: user._id},
-                    {firstName: user.firstName},
-                    {lastName: user.lastName},
-                    {email: user.email},
-                    {courses: user.courses},
-                    {role: user.role},
-                    {dateCreated: user.dateCreated}
+                    {
+                        _id: user._id,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                        email: user.email,
+                        courses: user.courses,
+                        role: user.role,
+                        dateCreated: user.dateCreated
+                    }
                 ] 
         })
     } catch (error) {
