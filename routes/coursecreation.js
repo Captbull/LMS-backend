@@ -11,7 +11,7 @@ const createCourseRouter = express.Router()
 
 createCourseRouter.put('/coursecreation', auth, createcourse)
 
-createCourseRouter.get("/getCourseDetails", auth, getCourseDetails)
+createCourseRouter.get("/getCourseDetails", getCourseDetails)
 
 
 

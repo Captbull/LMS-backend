@@ -4,7 +4,7 @@ const User = require("../models/user")
 
 const getCourseDetails = async (req, res) => {
     try {
-        const course = await Courses.findOne({ _id: req.body._id });
+        const course = await Courses.find({});
         if(!course) return res.status(404).send({
             responseCode: "90",
             responseMessage: "Course not found",
@@ -13,15 +13,17 @@ const getCourseDetails = async (req, res) => {
         res.status(200).send({
             responseCode: "00",
             responseMessage: "Successful",
-            data: 
-                [
-                    {_id: course._id},
-                    {image: course.courseImage},
-                    {title: course.title},
-                    {description: course.description},
-                    {learningObjectives: course.learningObjectives},
-                    {duration: course.duration}
-                ]
+            data:course
+                // [
+                //     {
+                //         _id: course._id,
+                //         image: course.courseImage,
+                //         title: course.title,
+                //         description: course.description,
+                //         learningObjectives: course.learningObjectives,
+                //         duration: course.duration
+                //     }
+                // ]
             
         })
     } catch (error) {

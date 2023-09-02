@@ -4,4 +4,4 @@ const auth = require("../middleware/auth")
 
 
 
-getAllCourses.get("getAllCourses", auth, getAllCourses)
+getAllCourses.get("getAllCourses", getAllCourses)

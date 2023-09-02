@@ -45,7 +45,7 @@ const registration = async (req, res) => {
 
         res.status(200).send({
             responseCode: '00',
-            responseMessage: 'user created successfully',
+            responseMessage: 'Registeration successfull Sign in to proceeed',
             data: {
                 _id: user._id,
                 firstName: user.firstName,
